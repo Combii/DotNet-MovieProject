@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using mvcProject.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace mvcProject.Models
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using mvcProject.Models;
+using mvcProject.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace mvcProject.Controllers
@@ -13,7 +14,9 @@ namespace mvcProject.Controllers
         
         public IActionResult Index()
         {
-            IEnumerable<Movie> movies = db.Movies.ToList();
+            var movies = db.Movies.ToList();
+            
+            movies.Sort();
             
             return View(movies);
         }   
@@ -27,18 +30,16 @@ namespace mvcProject.Controllers
         [HttpPost]
         public IActionResult Create(Movie movie)
         {
-            if (ModelState.IsValid)
-            {
-                db.Movies.Add(movie);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View();
+            if (!ModelState.IsValid) return View();
+            
+            db.Movies.Add(movie);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Details(int id)
         {
-            Movie movie = getMovie(id);
+            Movie movie = GetMovie(id);
             
             if (movie != null)
             return View(movie);
@@ -46,7 +47,7 @@ namespace mvcProject.Controllers
             return NotFound();
         }
 
-        private Movie getMovie(int id)
+        private Movie GetMovie(int id)
         {
             foreach (var movie in db.Movies.ToList())
             {
