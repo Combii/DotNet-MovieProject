@@ -27,8 +27,12 @@ namespace mvcProject.Controllers
         [HttpPost]
         public IActionResult Create(Movie movie)
         {
-            db.Movies.Add(movie);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                db.Movies.Add(movie);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View();
         }
 
