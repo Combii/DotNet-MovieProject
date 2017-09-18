@@ -16,5 +16,11 @@ namespace mvcProject.Models.Entities
                 return string.Compare(MovieName, other.MovieName, StringComparison.Ordinal);
             return 0;
         }
+        
+        
+        public override string ToString()
+        {
+            return "Movie: " + Id + " " + MovieName;
+        }
     }
 }
