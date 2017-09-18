@@ -14,7 +14,7 @@ namespace mvcProject.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    MovieName = table.Column<string>(type: "TEXT", nullable: true)
+                    MovieName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

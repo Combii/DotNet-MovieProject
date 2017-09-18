@@ -10,7 +10,7 @@ using System;
 namespace mvcProject.Migrations
 {
     [DbContext(typeof(MoviesDbContext))]
-    [Migration("20170918093512_InitialCreate")]
+    [Migration("20170918141848_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,12 +19,13 @@ namespace mvcProject.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("mvcProject.Models.Movie", b =>
+            modelBuilder.Entity("mvcProject.Models.Entities.Movie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("MovieName");
+                    b.Property<string>("MovieName")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
