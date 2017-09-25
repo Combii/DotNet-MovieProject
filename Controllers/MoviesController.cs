@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks.Dataflow;
 using mvcProject.Models;
 using mvcProject.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +18,17 @@ namespace mvcProject.Controllers
             movies.Sort();
             return View(movies);
         }
+
+
+        public IActionResult Edit()
+        {
+            return View();
+        }
         
         [HttpPost]
         public IActionResult Index(string movieName)
         {
-            if (movieName == null) return RedirectToAction("Index");
+            if (string.IsNullOrEmpty(movieName)) return RedirectToAction("Index");
             
                 var movies = db.Movies.ToList();
 
@@ -32,10 +36,9 @@ namespace mvcProject.Controllers
 
                 foreach (var movie in movies)
                 {
-                    if (movie.MovieName.StartsWith(movieName))
+                    if (movie.MovieName.StartsWith(UppcaseFirstLetter(movieName)))
                     {
                         newFilteredList.Add(movie);
-                        Console.Write(newFilteredList.Count + "\n");
                     }
                 }
                 newFilteredList.Sort();
@@ -64,7 +67,8 @@ namespace mvcProject.Controllers
         public IActionResult Create(Movie movie)
         {
             if (!ModelState.IsValid) return View();
-
+            movie.MovieName = UppcaseFirstLetter(movie.MovieName);
+            
             db.Movies.Add(movie);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -92,5 +96,10 @@ namespace mvcProject.Controllers
             return null;
         }
 
+        private string UppcaseFirstLetter(string s)
+        {
+            return char.ToUpper(s[0]) + s.Substring(1);
+        }
+        
     }
 }
