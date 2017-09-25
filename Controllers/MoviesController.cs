@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks.Dataflow;
 using mvcProject.Models;
 using mvcProject.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -23,22 +24,22 @@ namespace mvcProject.Controllers
         [HttpPost]
         public IActionResult Index(string movieName)
         {
-            var movies = db.Movies.ToList();
+            if (movieName == null) return RedirectToAction("Index");
             
-            var newFilteredList = new List<Movie>();
-            
-            foreach (var movie in movies)
-            {
-                if (movie.MovieName.StartsWith(movieName))
-                {
-                    newFilteredList.Add(movie);
-                    Console.Write(newFilteredList.Count + "\n");
-                }
-            }
+                var movies = db.Movies.ToList();
 
-            newFilteredList.Sort();
-            
-            return View(newFilteredList);
+                var newFilteredList = new List<Movie>();
+
+                foreach (var movie in movies)
+                {
+                    if (movie.MovieName.StartsWith(movieName))
+                    {
+                        newFilteredList.Add(movie);
+                        Console.Write(newFilteredList.Count + "\n");
+                    }
+                }
+                newFilteredList.Sort();
+                return View(newFilteredList);
         }
 
         public IActionResult MovieList()
