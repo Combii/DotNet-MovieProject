@@ -19,16 +19,20 @@
 
     <form method="post" asp-action="Index">
 
-        <div class="input-group">
-            <input type="text" class="form-control" name="MovieName" placeholder="Movie name" aria-describedby="basic-addon2">
-            <br><br>
-
-            <input type="submit" class="btn btn-primary btn-block" value="Search">
-            
+        <div class="col-lg-5">
+            <div class="input-group">
+                <input type="text" class="form-control" name="MovieName" placeholder="Search for Movies Name..." aria-label="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+            </div>
+            <br>
             <a asp-action="Create">
-                <input type="button" class="btn btn-success btn-block" value="New Movie"/>
+                <input type="button" class="btn btn-success " value="New Movie"/>
             </a>
-        </div>
+            <br><br>
+        </div> 
+        
     </form>
     <br>
 
