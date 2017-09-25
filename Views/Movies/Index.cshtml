@@ -7,9 +7,6 @@
     ViewBag.Title = "MovieList";
     Layout = "_Layout";
 }
-<style type="text/css">.jumbotron-fluid { }
- .display-3 { }
-</style>
 
 <br>
 <div class="container">
@@ -21,18 +18,20 @@
     </div>
 
     <form method="post" asp-action="Index">
-     
+
         <div class="input-group">
             <input type="text" class="form-control" name="MovieName" placeholder="Movie name" aria-describedby="basic-addon2">
+            <br><br>
+
+            <input type="submit" class="btn btn-primary btn-block" value="Search">
+            
+            <a asp-action="Create">
+                <input type="button" class="btn btn-success btn-block" value="New Movie"/>
+            </a>
         </div>
-        <br>
-        <input type="submit" class="btn btn-primary" value="Search">
-        <a asp-action="Create">
-            <input type="button" class="btn btn-success" value="New Movie" />
-        </a>
     </form>
     <br>
-    
+
     <br><br>
 
 
@@ -47,9 +46,10 @@
                 <td>@Html.ActionLink(movie.MovieName, "Details", "Movies", new {id = movie.Id}, null)</td>
                 <td>
                     <form method="post" asp-action="Delete">
+                        <button type="submit" class="btn btn-info" name="id" value="@movie.Id">Edit</button>
                         <button type="submit" class="btn btn-danger" name="id" value="@movie.Id">Delete</button>
                     </form>
-                    
+
                 </td>
             </tr>
         }
