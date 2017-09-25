@@ -20,9 +20,9 @@ namespace mvcProject.Controllers
         }
 
 
-        public IActionResult Edit()
+        public IActionResult Edit(int movieId)
         {
-            return View();
+            return View(GetMovie(movieId));
         }
         
         [HttpPost]

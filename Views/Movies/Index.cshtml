@@ -20,7 +20,7 @@
     <form method="post" asp-action="Index">
 
         <div class="col-lg-5">
-            <div class="input-group">
+            <div class="input-group input-group-lg">
                 <input type="text" class="form-control" name="MovieName" placeholder="Search for Movies Name..." aria-label="Search for...">
                 <span class="input-group-btn">
                     <button class="btn btn-secondary" type="submit">Go!</button>
@@ -28,11 +28,11 @@
             </div>
             <br>
             <a asp-action="Create">
-                <input type="button" class="btn btn-success " value="New Movie"/>
+                <input type="button" class="btn btn-success" value="New Movie"/>
             </a>
             <br><br>
-        </div> 
-        
+        </div>
+
     </form>
     <br>
 
@@ -49,10 +49,15 @@
             <tr>
                 <td>@Html.ActionLink(movie.MovieName, "Details", "Movies", new {id = movie.Id}, null)</td>
                 <td>
-                    <form method="post" asp-action="Delete">
-                        <button type="submit" class="btn btn-info" name="id" value="@movie.Id">Edit</button>
-                        <button type="submit" class="btn btn-danger" name="id" value="@movie.Id">Delete</button>
-                    </form>
+                    <div class="btn-group" style="display: flex">
+                        <form method="post" asp-action="Edit">
+                            <button type="submit" class="btn btn-info" name="movieId" value="@movie.Id">Edit</button>
+                        </form>
+
+                        <form method="post" asp-action="Delete">
+                            <button type="submit" class="btn btn-danger" name="id" value="@movie.Id">Delete</button>
+                        </form>
+                    </div>
 
                 </td>
             </tr>
