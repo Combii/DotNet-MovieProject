@@ -47,6 +47,13 @@ namespace mvcProject.Controllers
         }
 
 
+        public IActionResult Delete(int id)
+        {
+            db.Movies.Remove(GetMovie(id));
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -64,7 +71,7 @@ namespace mvcProject.Controllers
 
         public IActionResult Details(int id)
         {
-            Movie movie = GetMovie(id);
+            var movie = GetMovie(id);
 
             if (movie != null)
                 return View(movie);

@@ -23,15 +23,16 @@
     <form method="post" asp-action="Index">
      
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Movie name" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" id="movieName" placeholder="Movie name" aria-describedby="basic-addon2">
         </div>
+        <br>
         <input type="submit" class="btn btn-primary" value="Search">
+        <a asp-action="Create">
+            <input type="button" class="btn btn-success" value="New Movie" />
+        </a>
     </form>
     <br>
-    <a href="/Movies/Create">
-        <input type="button" class="btn btn-success" value="New Movie" />
-    </a>
-
+    
     <br><br>
 
 
@@ -44,7 +45,12 @@
         {
             <tr>
                 <td>@Html.ActionLink(movie.MovieName, "Details", "Movies", new {id = movie.Id}, null)</td>
-                <td><input type="button" class="btn btn-danger" value="Delete"/></td>
+                <td>
+                    <form method="post" asp-action="Delete">
+                        <button type="submit" class="btn btn-danger" name="id" value="@movie.Id">Delete</button>
+                    </form>
+                    
+                </td>
             </tr>
         }
     </table>
