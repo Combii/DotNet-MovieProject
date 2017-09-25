@@ -7,22 +7,45 @@
     ViewBag.Title = "MovieList";
     Layout = "_Layout";
 }
+<style type="text/css">.jumbotron-fluid { }
+ .display-3 { }
+</style>
+
 <br>
+<div class="container">
 
-<form method="post" asp-action="Index">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">Movies</h1>
+        </div>
+    </div>
+
+    <form method="post" asp-action="Index">
+     
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Movie name" aria-describedby="basic-addon2">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Search">
+    </form>
     <br>
-    Movie name:<br>
-    <input type="text" name="MovieName">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
-<br><br>
+    <a href="/Movies/Create">
+        <input type="button" class="btn btn-success" value="New Movie" />
+    </a>
 
-<table class="table table-striped">
-    @foreach (var movie in Model)    
-    {
+    <br><br>
+
+
+    <table class="table table-striped">
         <tr>
-            <td>@Html.ActionLink(movie.MovieName, "Details", "Movies", new {id = movie.Id}, null)</td>
+            <th>Movie Name</th>
+            <th>Enrollments</th>
         </tr>
-    }
-</table>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(movie.MovieName, "Details", "Movies", new {id = movie.Id}, null)</td>
+                <td><input type="button" class="btn btn-danger" value="Delete"/></td>
+            </tr>
+        }
+    </table>
+</div>
