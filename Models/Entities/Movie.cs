@@ -8,7 +8,11 @@ namespace mvcProject.Models.Entities
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "Movie Name")]
         public string MovieName { get; set; }
+       
+         
+        
 
         public int CompareTo(Movie other)
         {

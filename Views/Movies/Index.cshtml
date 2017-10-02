@@ -27,17 +27,13 @@
                     <button class="btn btn-secondary" type="submit">Go!</button>
                 </span>
             </div>
-            <br>
-            <a asp-action="Create">
-                <input type="button" class="btn btn-success" value="New Movie"/>
-            </a>
             <br><br>
+            @Html.ActionLink("Create Movie", "Create", "Movies", null, new {@class = "btn btn-success"})
+            <br><br>
+            
+
         </div>
-
     </form>
-    <br>
-
-    <br><br>
 
 
     <table class="table table-striped">
